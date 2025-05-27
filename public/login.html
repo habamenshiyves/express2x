@@ -1,7 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion</title>
+  <!-- Le style est maintenant directement ici -->
+  <style>
+    /* Styles globaux et reset */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5; /* Un gris clair pour le fond */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Prend toute la hauteur de la vue */
+      margin: 0;
+      padding: 20px; /* Un peu d'espace sur les petits écrans */
+      box-sizing: border-box;
+    }
+
+    /* Style du conteneur du formulaire */
+    #login-form {
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px; /* Limite la largeur sur les grands écrans */
+      box-sizing: border-box;
+    }
+
+    /* Style du titre */
+    #login-form h2 {
+      text-align: center;
+      color: #333; /* Couleur de texte foncée */
+      margin-top: 0;
+      margin-bottom: 30px;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    /* Style des champs de saisie */
+    #login-form input[name="username"],
+    #login-form input[name="password"] {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1px solid #dcdcdc; /* Bordure subtile */
+      border-radius: 5px;
+      box-sizing: border-box; /* Inclut padding et border dans la largeur totale */
+      font-size: 16px;
+      color: #333;
+    }
+
+    #login-form input[name="username"]::placeholder,
+    #login-form input[name="password"]::placeholder {
+      color: #aaa; /* Placeholder un peu plus clair */
+    }
+
+    /* Style au focus des champs */
+    #login-form input[name="username"]:focus,
+    #login-form input[name="password"]:focus {
+      border-color: #007bff; /* Couleur d'accentuation au focus */
+      outline: none; /* Supprime l'outline par défaut */
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Ombre douce au focus */
+    }
+
+    /* Style du bouton */
+    #login-form button[type="submit"] {
+      width: 100%;
+      padding: 12px 15px;
+      background-color: #007bff; /* Couleur principale (bleu) */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+    }
+
+    #login-form button[type="submit"]:hover {
+      background-color: #0056b3; /* Bleu plus foncé au survol */
+    }
+
+    #login-form button[type="submit"]:active {
+      transform: scale(0.98); /* Effet de "pression" au clic */
+    }
+
+    /* Optionnel: lien "mot de passe oublié" ou "créer un compte" (non présent dans votre HTML) */
+    .form-links {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .form-links a {
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .form-links a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+  <!-- Le lien vers le fichier CSS externe n'est plus nécessaire si tout est inline
+  <link rel="stylesheet" href="/css/style.css">
+  -->
 </head>
 <body>
   <form id="login-form">
@@ -9,6 +115,7 @@
     <input name="username" placeholder="Nom d’utilisateur" required>
     <input name="password" type="password" placeholder="Mot de passe" required>
     <button type="submit">Se connecter</button>
+  
   </form>
   <script src="../js/auth.js"></script>
 </body>

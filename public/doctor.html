@@ -1,18 +1,221 @@
 <!DOCTYPE html>
-<html>
-<head><link rel="stylesheet" href="./css/style.css"></head>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace Médecin</title>
+  <style>
+    /* styles.css contenus directement ici */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      max-width: 900px;
+      margin: 0 auto; /* Centrage horizontal et enlève la marge par défaut */
+      padding: 1rem 2rem 2rem; /* Ajoute un peu de padding autour */
+      background-color: #f4f7f6;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      margin-bottom: 0; /* Ajusté car le header a déjà une marge */
+      color: #0056b3;
+      font-size: 2em;
+    }
+
+    h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #007bff;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 0.5rem;
+    }
+
+    /* Styles pour les sections */
+    section {
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+
+    /* Styles pour les formulaires */
+    form {
+      display: grid;
+      gap: 1rem; /* Un peu plus d'espace */
+      margin-bottom: 2rem;
+    }
+
+    form div { /* Pour regrouper label et input/select/textarea */
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.25rem; /* Espace entre label et champ */
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+      padding: 0.75rem; /* Un peu plus de padding */
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box; /* Pour que padding n'augmente pas la taille totale */
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+
+    textarea {
+      height: 5rem; /* Un peu plus haut */
+      resize: vertical; /* Permet de redimensionner verticalement */
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    button:active {
+      background-color: #004085;
+    }
+
+    .btn-logout {
+      background-color: #dc3545;
+      padding: 0.6rem 1rem;
+    }
+
+    .btn-logout:hover {
+      background-color: #c82333;
+    }
+
+
+    /* Styles pour les listes (dashboard, vitals) - à adapter selon le contenu généré par JS */
+    #dashboard table,
+    #vitals-list table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    #dashboard th, #dashboard td,
+    #vitals-list th, #vitals-list td {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    #dashboard th,
+    #vitals-list th {
+      background-color: #e9ecef;
+      color: #495057;
+      font-weight: bold;
+    }
+
+    #dashboard tr:nth-child(even),
+    #vitals-list tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    #dashboard p,
+    #vitals-list p { /* Pour les messages "Chargement..." */
+        color: #6c757d;
+        font-style: italic;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+      font-size: 0.9em;
+      color: #6c757d;
+    }
+  </style>
+</head>
 <body>
-  <h2>Espace Médecin</h2>
-  <section id="dashboard"></section>
-  <section id="vitals-list"></section>
-  <h3>Nouvelle consultation</h3>
-  <form id="consult-form">
-    <select id="cons-patients"></select>
-    <textarea name="observations" placeholder="Observations"></textarea>
-    <textarea name="recommendations" placeholder="Recommendations"></textarea>
-    <textarea name="prescriptions" placeholder="Prescriptions"></textarea>
-    <button>Ajouter</button>
-  </form>
-  <script src="../js/doctor.js"></script>
+  <header>
+    <h2>Espace Médecin</h2>
+    <button id="logout-button" class="btn-logout">Déconnexion</button>
+  </header>
+
+  <main>
+    <section id="dashboard-section">
+      <h3>Tableau de Bord</h3>
+      <div id="dashboard">
+        <!-- Le contenu du dashboard sera injecté ici par JS -->
+        <p>Chargement du tableau de bord...</p>
+      </div>
+    </section>
+
+    <section id="vitals-section">
+      <h3>Derniers Signes Vitaux Enregistrés</h3>
+      <div id="vitals-list">
+        <!-- La liste des signes vitaux sera injectée ici par JS -->
+        <p>Chargement des signes vitaux...</p>
+      </div>
+    </section>
+
+    <section id="consultation-section">
+      <h3>Nouvelle Consultation</h3>
+      <form id="consult-form">
+        <div>
+          <label for="cons-patients">Patient :</label>
+          <select id="cons-patients" name="patient_id" required></select>
+        </div>
+        <div>
+          <label for="observations">Observations :</label>
+          <textarea id="observations" name="observations" placeholder="Observations cliniques..." required></textarea>
+        </div>
+        <div>
+          <label for="recommendations">Recommandations :</label>
+          <textarea id="recommendations" name="recommendations" placeholder="Conseils, repos, suivi..."></textarea>
+        </div>
+        <div>
+          <label for="prescriptions">Prescriptions :</label>
+          <textarea id="prescriptions" name="prescriptions" placeholder="Médicaments, dosages, durée..."></textarea>
+        </div>
+        <button type="submit">Ajouter Consultation</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2023 Votre Clinique</p>
+  </footer>
+
+  <!-- Assurez-vous que le chemin vers doctor.js est correct par rapport à la config express.static -->
+  <!-- Si doctor.html et js/doctor.js sont tous deux dans le dossier 'public' : -->
+  <script src="/js/doctor.js"></script>
 </body>
 </html>
