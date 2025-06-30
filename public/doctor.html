@@ -3,104 +3,451 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Espace Médecin</title>
+  <title>Espace Médecin - MediConnect</title>
   <link rel="stylesheet" href="./css/doctor.css">
 </head>
 <body>
-  <div class="background-pattern"></div>
-  
-  <header>
-    <div class="header-content">
-      <h2>
-        <span class="icon">🏥</span>
-        Espace Médecin
-      </h2>
-      <button id="logout-button" class="btn-logout">
-        <span class="icon">🚪</span>
-        Déconnexion
+<!-- Animation de fond -->
+<div class="background-pattern"></div>
+
+<!-- Header principal -->
+<header class="main-header">
+  <div class="header-content">
+    <div class="header-left">
+      <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+        </svg>
+        <span>MediConnect</span>
+      </div>
+      <nav class="nav-tabs">
+        <button class="nav-tab active" data-tab="dashboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          Tableau de bord
+        </button>
+        <button class="nav-tab" data-tab="vitals">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+          </svg>
+          Signes Vitaux
+        </button>
+        <button class="nav-tab" data-tab="consultation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="12" y1="18" x2="12" y2="12"></line>
+            <line x1="9" y1="15" x2="15" y2="15"></line>
+          </svg>
+          Consultation
+        </button>
+        <button class="nav-tab" data-tab="history">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          Historique
+        </button>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="notifications">
+        <button class="btn-icon" title="Notifications">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span class="notification-badge">3</span>
+        </button>
+      </div>
+      <div class="user-info">
+        <div class="user-avatar">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="user-details">
+          <span class="user-name">Dr. Jean Martin</span>
+          <span class="user-role">Médecin généraliste</span>
+        </div>
+      </div>
+      <button id="logout-button" class="btn-icon" title="Déconnexion">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
       </button>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <section id="dashboard-section" class="card">
-      <h3>
-        <span class="icon">📊</span>
-        Tableau de Bord
-      </h3>
-      <div id="dashboard">
-        <div class="loading">
-          <div class="spinner"></div>
-          <p>Chargement du tableau de bord...</p>
+<main class="main-content">
+  <!-- Section Tableau de bord -->
+  <section id="dashboard-section" class="content-section active">
+    <div class="dashboard-header">
+      <h2>Tableau de Bord</h2>
+      <div class="period-selector">
+        <select id="dashboard-period">
+          <option value="today">Aujourd'hui</option>
+          <option value="week">Cette semaine</option>
+          <option value="month" selected>Ce mois</option>
+          <option value="year">Cette année</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card patients-total">
+        <div class="stat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <h3>Patients Total</h3>
+          <p class="stat-value">156</p>
+          <p class="stat-change positive">+12% ce mois</p>
         </div>
       </div>
-    </section>
 
-    <section id="vitals-section" class="card">
-      <h3>
-        <span class="icon">💓</span>
-        Derniers Signes Vitaux Enregistrés
-      </h3>
-      <div id="vitals-list">
-        <div class="loading">
-          <div class="spinner"></div>
-          <p>Chargement des signes vitaux...</p>
+      <div class="stat-card consultations">
+        <div class="stat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <h3>Consultations</h3>
+          <p class="stat-value">47</p>
+          <p class="stat-change positive">+8% ce mois</p>
         </div>
       </div>
-    </section>
 
-    <section id="consultation-section" class="card">
-      <h3>
-        <span class="icon">📝</span>
-        Nouvelle Consultation
-      </h3>
-      <form id="consult-form">
-        <div class="form-group">
-          <label for="cons-patients">
-            <span class="icon">👤</span>
-            Patient :
-          </label>
-          <select id="cons-patients" name="patient_id" required>
+      <div class="stat-card critical-patients">
+        <div class="stat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <h3>Patients Critiques</h3>
+          <p class="stat-value">3</p>
+          <p class="stat-change negative">Nécessitent attention</p>
+        </div>
+      </div>
+
+      <div class="stat-card avg-vitals">
+        <div class="stat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <h3>Mesures Vitales</h3>
+          <p class="stat-value">312</p>
+          <p class="stat-change">Cette semaine</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-content">
+      <div class="recent-patients card">
+        <h3>Patients Récents</h3>
+        <div id="recent-patients-list" class="patients-list">
+          <div class="loading">
+            <div class="spinner"></div>
+            <p>Chargement...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="alerts-section card">
+        <h3>Alertes et Notifications</h3>
+        <div id="alerts-list" class="alerts-list">
+          <div class="loading">
+            <div class="spinner"></div>
+            <p>Chargement...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Signes Vitaux -->
+  <section id="vitals-section" class="content-section">
+    <div class="section-header">
+      <h2>Signes Vitaux des Patients</h2>
+      <div class="section-controls">
+        <div class="search-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" id="search-vitals" placeholder="Rechercher un patient...">
+        </div>
+        <select id="filter-status" class="filter-select">
+          <option value="all">Tous les patients</option>
+          <option value="critical">Critiques</option>
+          <option value="attention">Attention requise</option>
+          <option value="stable">Stables</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="vitals-container" class="vitals-container">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Chargement des signes vitaux...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Consultation -->
+  <section id="consultation-section" class="content-section">
+    <div class="section-header">
+      <h2>Nouvelle Consultation</h2>
+      <p class="section-description">Enregistrer une consultation médicale</p>
+    </div>
+
+    <form id="consultation-form" class="consultation-form card">
+      <!-- Sélection du patient -->
+      <div class="patient-selector">
+        <label for="patient-search-consult">Patient</label>
+        <div class="search-container">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input
+                  type="text"
+                  id="patient-search-consult"
+                  placeholder="Rechercher un patient..."
+                  autocomplete="off"
+                  required
+          >
+          <select id="patient-select-consult" name="patient_id" required style="display:none;">
             <option value="">Sélectionner un patient...</option>
           </select>
         </div>
-        
-        <div class="form-group">
-          <label for="observations">
-            <span class="icon">🔍</span>
-            Observations :
-          </label>
-          <textarea id="observations" name="observations" placeholder="Observations cliniques..." required></textarea>
+        <div id="patient-suggestions-consult" class="patient-suggestions"></div>
+      </div>
+
+      <!-- Affichage des derniers signes vitaux -->
+      <div id="patient-vitals-display" class="patient-vitals-display" style="display:none;">
+        <h4>Derniers signes vitaux</h4>
+        <div class="vitals-summary"></div>
+      </div>
+
+      <!-- Motif de consultation -->
+      <div class="form-group">
+        <label for="chief-complaint">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          Motif de consultation
+        </label>
+        <input
+                type="text"
+                id="chief-complaint"
+                name="chief_complaint"
+                placeholder="Ex: Douleurs abdominales, fièvre..."
+                required
+        >
+      </div>
+
+      <!-- Observations cliniques -->
+      <div class="form-group">
+        <label for="observations">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          Observations cliniques
+        </label>
+        <textarea
+                id="observations"
+                name="observations"
+                rows="4"
+                placeholder="Examen clinique, symptômes observés, état général du patient..."
+                required
+        ></textarea>
+      </div>
+
+      <!-- Diagnostic -->
+      <div class="form-group">
+        <label for="diagnosis">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 11H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h5"></path>
+            <path d="M15 11h5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-5"></path>
+            <path d="M12 2v9"></path>
+            <circle cx="12" cy="11" r="3"></circle>
+          </svg>
+          Diagnostic
+        </label>
+        <input
+                type="text"
+                id="diagnosis"
+                name="diagnosis"
+                placeholder="Diagnostic établi"
+                required
+        >
+      </div>
+
+      <!-- Recommandations -->
+      <div class="form-group">
+        <label for="recommendations">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 6v6l4 2"></path>
+          </svg>
+          Recommandations
+        </label>
+        <textarea
+                id="recommendations"
+                name="recommendations"
+                rows="3"
+                placeholder="Conseils, repos, suivi recommandé, examens complémentaires..."
+        ></textarea>
+      </div>
+
+      <!-- Prescriptions -->
+      <div class="form-group">
+        <div class="prescriptions-label">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+          </svg>
+          Prescriptions médicales
         </div>
-        
-        <div class="form-group">
-          <label for="recommendations">
-            <span class="icon">💡</span>
-            Recommandations :
-          </label>
-          <textarea id="recommendations" name="recommendations" placeholder="Conseils, repos, suivi..."></textarea>
+        <div id="prescriptions-container">
+          <div class="prescription-item">
+            <input
+                    type="text"
+                    name="medication[]"
+                    placeholder="Médicament"
+                    class="medication-input"
+                    id="medication-0"
+                    aria-label="Médicament"
+            >
+            <input
+                    type="text"
+                    name="dosage[]"
+                    placeholder="Dosage"
+                    class="dosage-input"
+                    id="dosage-0"
+                    aria-label="Dosage"
+            >
+            <input
+                    type="text"
+                    name="duration[]"
+                    placeholder="Durée"
+                    class="duration-input"
+                    id="duration-0"
+                    aria-label="Durée"
+            >
+            <button type="button" class="btn-remove-prescription" style="display:none;" aria-label="Supprimer cette prescription">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
         </div>
-        
-        <div class="form-group">
-          <label for="prescriptions">
-            <span class="icon">💊</span>
-            Prescriptions :
-          </label>
-          <textarea id="prescriptions" name="prescriptions" placeholder="Médicaments, dosages, durée..."></textarea>
-        </div>
-        
-        <button type="submit" class="btn-primary">
-          <span class="icon">✅</span>
-          Ajouter Consultation
+        <button type="button" id="add-prescription" class="btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Ajouter une prescription
         </button>
-      </form>
-    </section>
-  </main>
+      </div>
 
-  <footer>
-    <p>© 2023 Votre Clinique - Système de Gestion Médicale</p>
-  </footer>
+      <!-- Prochain rendez-vous -->
+      <div class="form-group">
+        <label for="follow-up">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Prochain rendez-vous
+        </label>
+        <input
+                type="date"
+                id="follow-up"
+                name="follow_up"
+                min="${new Date().toISOString().split('T')[0]}"
+        >
+      </div>
 
-  <script src="/js/doctor.js"></script>
+      <!-- Actions -->
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" id="reset-consultation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          Réinitialiser
+        </button>
+        <button type="submit" class="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+            <polyline points="7 3 7 8 15 8"></polyline>
+          </svg>
+          Enregistrer la consultation
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Section Historique -->
+  <section id="history-section" class="content-section">
+    <div class="section-header">
+      <h2>Historique des Consultations</h2>
+      <div class="section-controls">
+        <div class="search-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" id="search-history" placeholder="Rechercher...">
+        </div>
+        <select id="filter-history-period" class="filter-select">
+          <option value="all">Toutes les consultations</option>
+          <option value="today">Aujourd'hui</option>
+          <option value="week">Cette semaine</option>
+          <option value="month">Ce mois</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="history-container" class="history-container">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Chargement de l'historique...</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Toast notifications -->
+<div id="toast-container" class="toast-container"></div>
+
+<script src="./js/doctor.js"></script>
 </body>
 </html>

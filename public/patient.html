@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Espace Santé - MediConnect</title>
+    <link rel="stylesheet" href="./css/patient.css">
+</head>
+<body>
+<!-- Header principal -->
+<header class="main-header">
+    <div class="header-content">
+        <div class="header-left">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+                <span>MediConnect</span>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="overview">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Vue d'ensemble
+                </button>
+                <button class="nav-tab" data-tab="vitals">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                    Mes Signes Vitaux
+                </button>
+                <button class="nav-tab" data-tab="consultations">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                    Mes Consultations
+                </button>
+                <button class="nav-tab" data-tab="appointments">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Mes Rendez-vous
+                </button>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="user-details">
+                    <span class="user-name">Jean Dupont</span>
+                    <span class="user-role">Patient</span>
+                </div>
+            </div>
+            <button id="logout-button" class="btn-icon" title="Déconnexion">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="main-content">
+    <!-- Section Vue d'ensemble -->
+    <section id="overview-section" class="content-section active">
+        <div class="welcome-banner">
+            <h1>Bienvenue, Jean</h1>
+            <p>Voici un aperçu de votre santé et vos prochains rendez-vous</p>
+        </div>
+
+        <div class="overview-grid">
+            <!-- Carte informations personnelles -->
+            <div class="info-card">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Mes Informations
+                </h3>
+                <div class="info-content">
+                    <div class="info-item">
+                        <span class="info-label">Nom complet</span>
+                        <span class="info-value">Jean Dupont</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Âge</span>
+                        <span class="info-value">45 ans</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Chambre</span>
+                        <span class="info-value">101</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Médecin traitant</span>
+                        <span class="info-value">Dr. Jean Martin</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte derniers signes vitaux -->
+            <div class="info-card vitals-summary">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                    Derniers Signes Vitaux
+                </h3>
+                <div class="vitals-preview">
+                    <div class="vital-mini">
+                        <span class="vital-icon">🌡️</span>
+                        <div>
+                            <span class="vital-label">Température</span>
+                            <span class="vital-value">37.2°C</span>
+                        </div>
+                    </div>
+                    <div class="vital-mini">
+                        <span class="vital-icon">❤️</span>
+                        <div>
+                            <span class="vital-label">Rythme cardiaque</span>
+                            <span class="vital-value">72 bpm</span>
+                        </div>
+                    </div>
+                    <div class="vital-mini">
+                        <span class="vital-icon">💉</span>
+                        <div>
+                            <span class="vital-label">Tension</span>
+                            <span class="vital-value">120/80</span>
+                        </div>
+                    </div>
+                    <div class="vital-mini">
+                        <span class="vital-icon">💨</span>
+                        <div>
+                            <span class="vital-label">Saturation O₂</span>
+                            <span class="vital-value">98%</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="last-update">Dernière mesure : Il y a 2 heures</p>
+            </div>
+
+            <!-- Carte prochain rendez-vous -->
+            <div class="info-card next-appointment">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Prochain Rendez-vous
+                </h3>
+                <div class="appointment-info">
+                    <div class="date-time">
+                        <span class="date">Mardi 5 Juillet 2024</span>
+                        <span class="time">14:30</span>
+                    </div>
+                    <div class="appointment-details">
+                        <span class="doctor">Dr. Jean Martin</span>
+                        <span class="type">Consultation de suivi</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte traitements en cours -->
+            <div class="info-card current-treatment">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                    Traitements en cours
+                </h3>
+                <div class="treatments-list">
+                    <div class="treatment-item">
+                        <span class="medication-name">Aspirine</span>
+                        <span class="dosage">100mg - 1 fois/jour</span>
+                    </div>
+                    <div class="treatment-item">
+                        <span class="medication-name">Metformine</span>
+                        <span class="dosage">500mg - 2 fois/jour</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Signes Vitaux -->
+    <section id="vitals-section" class="content-section">
+        <div class="section-header">
+            <h2>Historique de mes Signes Vitaux</h2>
+            <select id="vitals-period" class="period-select">
+                <option value="week">Cette semaine</option>
+                <option value="month">Ce mois</option>
+                <option value="3months">3 derniers mois</option>
+                <option value="all">Tout</option>
+            </select>
+        </div>
+
+        <div class="vitals-charts">
+            <div class="chart-card">
+                <h3>Évolution de la Température</h3>
+                <canvas id="temperature-chart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Évolution du Rythme Cardiaque</h3>
+                <canvas id="heartrate-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="vitals-history" id="vitals-history-container">
+            <h3>Historique détaillé</h3>
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Chargement...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Consultations -->
+    <section id="consultations-section" class="content-section">
+        <div class="section-header">
+            <h2>Historique de mes Consultations</h2>
+            <div class="filter-controls">
+                <input type="text" id="search-consultations" placeholder="Rechercher..." class="search-input">
+                <select id="filter-consultations" class="filter-select">
+                    <option value="all">Toutes</option>
+                    <option value="month">Ce mois</option>
+                    <option value="3months">3 derniers mois</option>
+                    <option value="year">Cette année</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="consultations-container" class="consultations-container">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Chargement...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Rendez-vous -->
+    <section id="appointments-section" class="content-section">
+        <div class="section-header">
+            <h2>Mes Rendez-vous</h2>
+            <button class="btn-primary" id="request-appointment">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Demander un rendez-vous
+            </button>
+        </div>
+
+        <div class="appointments-grid">
+            <div class="appointments-upcoming">
+                <h3>Rendez-vous à venir</h3>
+                <div id="upcoming-appointments" class="appointments-list">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Chargement...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="appointments-past">
+                <h3>Rendez-vous passés</h3>
+                <div id="past-appointments" class="appointments-list">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Chargement...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Modal demande de rendez-vous -->
+<div id="appointment-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Demander un rendez-vous</h3>
+            <button class="modal-close" onclick="closeAppointmentModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <form id="appointment-form">
+            <div class="form-group">
+                <label for="appointment-reason">Motif de la demande</label>
+                <textarea id="appointment-reason" name="reason" rows="3" placeholder="Décrivez brièvement la raison de votre demande..." required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="appointment-urgency">Urgence</label>
+                <select id="appointment-urgency" name="urgency" required>
+                    <option value="normal">Normal</option>
+                    <option value="urgent">Urgent (dans les 48h)</option>
+                    <option value="emergency">Très urgent (dans les 24h)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="preferred-date">Date souhaitée</label>
+                <input type="date" id="preferred-date" name="preferredDate" min="${new Date().toISOString().split('T')[0]}">
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="closeAppointmentModal()">Annuler</button>
+                <button type="submit" class="btn-primary">Envoyer la demande</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Toast notifications -->
+<div id="toast-container" class="toast-container"></div>
+
+<script src="./js/patient.js"></script>
+</body>
+</html>
